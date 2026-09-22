@@ -1,7 +1,85 @@
-<!doctype html><html lang='fr'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><title>LaZermiKiViser</title><script src='https://telegram.org/js/telegram-web-app.js?63'></script><style>
-:root{--bg:#05070b;--card:#0c111a;--line:#1a2d4c;--blue:#2684ff;--txt:#f6f8ff;--muted:#8994a7}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#10264b 0,#05070b 38%);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding-bottom:92px}.splash{position:fixed;z-index:20;inset:0;background:#03060c;display:grid;place-items:center;transition:.45s}.splash.hide{opacity:0;pointer-events:none}.splash img{width:min(78vw,360px);border-radius:32px}.load{position:absolute;bottom:11%;font-weight:800;letter-spacing:4px;color:#77aaff}.hero{text-align:center;padding:26px 18px 10px}.hero img{width:112px;height:112px;object-fit:cover;border-radius:50%;border:2px solid var(--blue);box-shadow:0 0 30px #1675ff55}.hero h1{font-size:23px;letter-spacing:2px;margin:12px 0 2px}.hero p{color:var(--muted);margin:0}.wrap{padding:12px 16px}.ticker{background:linear-gradient(90deg,#1266ff,#55a3ff);padding:14px;border-radius:16px;font-weight:900;letter-spacing:2px;text-align:center}.chips{display:flex;gap:9px;overflow:auto;padding:16px 0}.chip{white-space:nowrap;border:1px solid #26344c;border-radius:20px;padding:10px 14px;color:#aab4c5;font-weight:800}.chip.active{border-color:var(--blue);color:#5da1ff;box-shadow:inset 0 0 0 1px #174fbd}.search{width:100%;background:#0a0d13;border:1px solid #29303b;border-radius:22px;padding:14px 17px;color:white;font-size:16px;outline:none}.featured{margin:18px 0;border:1px solid #254b82;background:linear-gradient(135deg,#0a1425,#0a0b10);border-radius:22px;padding:18px}.featured small{color:#4b95ff;font-weight:900;letter-spacing:2px}.featured h2{margin:8px 0 3px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:linear-gradient(180deg,#0d1420,#080a0f);border:1px solid #1b2b43;border-radius:20px;overflow:hidden}.pic{aspect-ratio:1/1;background:radial-gradient(circle,#12366a,#080b12);display:grid;place-items:center;font-size:54px}.card .pad{padding:12px}.tag{font-size:11px;color:#4e94ff;font-weight:900;letter-spacing:1px}.card h3{margin:8px 0 5px;font-size:17px}.price{font-weight:900;color:#3189ff;font-size:20px}.btn{margin-top:10px;width:100%;border:0;border-radius:12px;background:#1268e8;color:white;padding:10px;font-weight:800}.nav{position:fixed;bottom:0;left:0;right:0;padding:10px 10px calc(10px + env(safe-area-inset-bottom));background:#080b11eF;border-top:1px solid #1e2632;display:grid;grid-template-columns:repeat(4,1fr);backdrop-filter:blur(18px)}.nav button{background:none;border:0;color:#697487;font-size:11px;font-weight:800}.nav .on{color:#338cff}.nav b{display:block;font-size:22px;margin-bottom:2px}.sheet{position:fixed;z-index:10;inset:0;background:#05070b;display:none;overflow:auto;padding-bottom:100px}.sheet.open{display:block}.back{margin:18px;border:0;background:#111826;color:#6ca7ff;border-radius:14px;padding:10px 14px;font-weight:800}.detail{padding:0 18px}.detail .big{aspect-ratio:1.35/1;border-radius:24px;background:radial-gradient(circle,#173d78,#080b12);display:grid;place-items:center;font-size:90px}.option{display:flex;justify-content:space-between;margin-top:12px;padding:18px;border:1px solid #263140;border-radius:18px;font-weight:800}.add{position:sticky;bottom:15px;margin:20px 18px;width:calc(100% - 36px);border:0;border-radius:16px;background:#1976f3;color:white;padding:16px;font-size:17px;font-weight:900}
-</style></head><body><div class='splash' id='splash'><img src='logo.png'><div class='load'>CHARGEMENT...</div></div><header class='hero'><img src='logo.png'><h1>LaZermiKiViser</h1><p>MINI BOUTIQUE</p></header><main class='wrap'><div class='ticker'>⚡ NOUVEAUTÉS • COLLECTION 01 • ⚡</div><div class='chips'><span class='chip active'>TOUS</span><span class='chip'>VÊTEMENTS</span><span class='chip'>ACCESSOIRES</span><span class='chip'>GAMING</span></div><input class='search' id='q' placeholder='Rechercher un produit…'><section class='featured'><small>♛ PRODUIT DE LA SEMAINE</small><h2>Collection 01</h2><div style='color:#8d9ab0'>Design noir & bleu exclusif LaZermiKiViser</div></section><div class='grid' id='grid'></div></main><nav class='nav'><button class='on'><b>⌂</b>ACCUEIL</button><button><b>🛒</b>PANIER</button><button><b>♡</b>FAVORIS</button><button><b>◉</b>PROFIL</button></nav><section class='sheet' id='sheet'><button class='back' onclick='closeDetail()'>‹ Retour</button><div class='detail'><div class='big' id='dIcon'></div><h1 id='dName'></h1><p style='color:#9aa6b8'>Article de démonstration LaZermiKiViser. Interface conçue pour une Mini App Telegram mobile.</p><div class='option'><span>Standard</span><span id='dPrice'></span></div><div class='option'><span>Premium</span><span>+10 €</span></div></div><button class='add' onclick="Telegram.WebApp.HapticFeedback?.impactOccurred('medium')">Ajouter au panier</button></section><script>
-const tg=window.Telegram?.WebApp;tg?.ready();tg?.expand();tg?.setHeaderColor?.('#05070b');tg?.setBackgroundColor?.('#05070b');
-const products=[['Hoodie 01','👕','49 €'],['Casquette 01','🧢','29 €'],['Tapis Gaming','🎮','35 €'],['Sac 01','🎒','39 €'],['Coque 01','📱','19 €'],['Mug 01','☕','15 €']];
-const grid=document.getElementById('grid');function render(filter=''){grid.innerHTML='';products.filter(p=>p[0].toLowerCase().includes(filter.toLowerCase())).forEach((p,i)=>{grid.innerHTML+=`<article class='card'><div class='pic'>${p[1]}</div><div class='pad'><div class='tag'>LAZERMIKIVISER • 01</div><h3>${p[0]}</h3><div class='price'>${p[2]}</div><button class='btn' onclick='detail(${i})'>Voir le produit</button></div></article>`})}render();document.getElementById('q').oninput=e=>render(e.target.value);function detail(i){const p=products[i];document.getElementById('dIcon').textContent=p[1];document.getElementById('dName').textContent=p[0];document.getElementById('dPrice').textContent=p[2];document.getElementById('sheet').classList.add('open');}function closeDetail(){document.getElementById('sheet').classList.remove('open')}setTimeout(()=>document.getElementById('splash').classList.add('hide'),1400);
-</script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#05070b">
+<title>LaZermiKiViser</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#05070b;--panel:#0d1119;--panel2:#111827;--txt:#f6f8ff;--muted:#8e9aad;--blue:#24a7ff;--violet:#8758ff;--pink:#ff4fd8;--line:#202838}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:radial-gradient(circle at 90% 0,#102a47 0,transparent 26%),radial-gradient(circle at 0 35%,#261338 0,transparent 25%),var(--bg);color:var(--txt);font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(to bottom,#000,transparent 70%)}
+#splash{position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:#030509;transition:.55s}
+#splash.hide{opacity:0;visibility:hidden}
+.splashLogo{width:210px;filter:drop-shadow(0 0 30px #179cff77);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.035);filter:drop-shadow(0 0 42px #9b5cff99)}}
+.app{max-width:650px;margin:auto;padding:env(safe-area-inset-top) 16px 108px}
+header{display:flex;align-items:center;justify-content:space-between;padding:15px 0 12px;position:sticky;top:0;z-index:10;background:linear-gradient(#05070bf2,#05070bd8 72%,transparent);backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:10px}.brand img{width:45px;height:45px;object-fit:cover;border-radius:14px;border:1px solid #2c9fff66}.brand b{font-size:17px;letter-spacing:.3px}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#1c8fff,#8a4fff);box-shadow:0 0 20px #238fff55;font-weight:800}
+.hero{position:relative;overflow:hidden;border:1px solid #233148;border-radius:26px;padding:25px 21px;background:linear-gradient(135deg,#0c1727,#141025 58%,#08131d);box-shadow:0 16px 60px #0008}
+.hero:after{content:"01";position:absolute;right:-6px;bottom:-38px;font-size:130px;font-weight:950;color:#ffffff08;letter-spacing:-10px}.hero .tag{color:#67c8ff;font-size:11px;font-weight:800;letter-spacing:2px}.hero h1{font-size:29px;line-height:1.02;margin:9px 0}.hero p{color:#aeb9c9;font-size:13px;max-width:320px;line-height:1.5;margin:0}
+.glow{position:absolute;width:140px;height:140px;border-radius:50%;right:18px;top:-60px;background:#9d4dff33;filter:blur(24px)}
+.search{margin:17px 0 13px;display:flex;align-items:center;gap:10px;padding:0 15px;height:52px;border-radius:17px;background:#0d121b;border:1px solid #202b3c;box-shadow:inset 0 1px #ffffff08}.search input{width:100%;border:0;outline:0;background:none;color:white;font-size:15px}.search span{color:#8391a5;font-size:20px}
+.chips{display:flex;gap:9px;overflow:auto;padding:1px 0 16px;scrollbar-width:none}.chip{white-space:nowrap;border:1px solid #263044;background:#0d121b;color:#9ba8b9;border-radius:999px;padding:9px 14px;font-size:12px;font-weight:700}.chip.active{color:white;background:linear-gradient(135deg,#138ce9,#784fff);border-color:transparent;box-shadow:0 0 20px #268cff44}
+.sectionTitle{display:flex;align-items:end;justify-content:space-between;margin:5px 1px 13px}.sectionTitle h2{font-size:19px;margin:0}.sectionTitle span{color:#718097;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{background:linear-gradient(180deg,#111721,#0b1017);border:1px solid #20293a;border-radius:22px;overflow:hidden;position:relative;box-shadow:0 12px 35px #0006;transition:.2s}.card:active{transform:scale(.975)}.pic{aspect-ratio:1/1.02;width:100%;object-fit:cover;display:block;background:#111}.heart{position:absolute;right:9px;top:9px;width:33px;height:33px;border-radius:50%;border:1px solid #ffffff24;background:#05080dbb;color:#fff;display:grid;place-items:center;font-size:16px;backdrop-filter:blur(8px)}.info{padding:12px}.info h3{font-size:14px;margin:0 0 6px;line-height:1.2}.status{font-size:10px;color:#65d8a0;display:flex;align-items:center;gap:5px}.dot{width:6px;height:6px;border-radius:50%;background:#54e69a;box-shadow:0 0 8px #54e69a}.desc{color:#7f8ba0;font-size:10px;line-height:1.35;margin-top:7px}
+.music{position:fixed;z-index:30;right:18px;bottom:92px;width:57px;height:57px;border-radius:50%;border:1px solid #59bfff66;background:radial-gradient(circle,#172638 20%,#05080d 21%,#05080d 46%,#1a88cc 48%,#9b4fff 70%,#10141b 72%);box-shadow:0 0 25px #2c9cff66;display:grid;place-items:center;color:white;font-size:17px}.music.playing{animation:spin 3s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.music:after{content:"";width:13px;height:13px;border-radius:50%;background:#eaf8ff;box-shadow:0 0 9px white}
+nav{position:fixed;z-index:20;bottom:0;left:0;right:0;padding:10px 14px calc(9px + env(safe-area-inset-bottom));background:#070a0ff2;border-top:1px solid #1c2431;backdrop-filter:blur(18px)}.navin{max-width:650px;margin:auto;display:flex;justify-content:space-around}.navitem{color:#657286;font-size:10px;text-align:center;min-width:60px}.navitem i{display:block;font-style:normal;font-size:21px;margin-bottom:3px}.navitem.active{color:#48b8ff}
+.modal{position:fixed;z-index:50;inset:0;background:#020409cc;backdrop-filter:blur(12px);display:none;align-items:end}.modal.open{display:flex}.sheet{width:100%;max-width:650px;margin:auto;background:#0b1018;border:1px solid #263044;border-bottom:0;border-radius:28px 28px 0 0;overflow:hidden;max-height:88vh;animation:up .25s ease}@keyframes up{from{transform:translateY(30px);opacity:0}}.sheet img{width:100%;height:300px;object-fit:cover}.sheetbody{padding:18px 18px calc(25px + env(safe-area-inset-bottom))}.close{float:right;border:0;background:#1a2230;color:white;width:36px;height:36px;border-radius:50%;font-size:18px}.sheet h2{margin:3px 0 8px}.sheet p{color:#9ba7b9;font-size:13px;line-height:1.55}.notice{margin-top:14px;padding:12px;border-radius:14px;background:#101927;border:1px solid #20354e;color:#8fcfff;font-size:11px;line-height:1.45}
+.empty{grid-column:1/-1;color:#8190a6;text-align:center;padding:35px}
+@media(max-width:360px){.grid{gap:9px}.app{padding-left:11px;padding-right:11px}.hero h1{font-size:25px}}
+</style>
+</head>
+<body>
+<div id="splash"><img class="splashLogo" src="logo.png" alt="LaZermiKiViser"></div>
+<div class="app">
+<header>
+ <div class="brand"><img src="logo.png"><div><b>LaZermiKiViser</b><small>01 • CALI COLLECTION</small></div></div>
+ <div class="avatar" id="avatar">01</div>
+</header>
+<section class="hero"><div class="glow"></div><div class="tag">LAZERMI • COLLECTION 01</div><h1>Bienvenue dans<br>l'univers Cali.</h1><p>Une sélection visuelle présentée dans une interface sombre, lumineuse et pensée pour Telegram.</p></section>
+<div class="search"><span>⌕</span><input id="q" placeholder="Rechercher dans le catalogue…" autocomplete="off"></div>
+<div class="chips"><button class="chip active">Tout</button><button class="chip">Collection 01</button><button class="chip">Nouveautés</button><button class="chip">Favoris</button></div>
+<div class="sectionTitle"><h2>Collection</h2><span id="count">4 références</span></div>
+<div class="grid" id="grid"></div>
+</div>
+<button class="music" id="music" aria-label="Musique"></button>
+<audio id="audio" loop preload="none"></audio>
+<nav><div class="navin"><div class="navitem active"><i>⌂</i>Accueil</div><div class="navitem"><i>⌕</i>Recherche</div><div class="navitem"><i>♡</i>Favoris</div><div class="navitem"><i>◎</i>Profil</div></div></nav>
+<div class="modal" id="modal"><div class="sheet"><img id="mimg"><div class="sheetbody"><button class="close" id="close">×</button><div class="status"><span class="dot"></span> Présenté au catalogue</div><h2 id="mtitle"></h2><p id="mdesc"></p><div class="notice">Catalogue informatif uniquement. Cette version ne propose ni panier, ni sélection de quantité, ni transmission de commande.</div></div></div></div>
+<script>
+const products=[
+ {name:"Filtrée 90U",img:"filtre90u.jpeg",desc:"Bloc brun compact. La mention « 90U / 90 micron » apparaît comme caractéristique sur le visuel ; la composition et la teneur ne sont pas vérifiables à partir d’une image."},
+ {name:"Cali Mousse Monster",img:"calimousse.jpeg",desc:"Présentation Papaya / Summer Edition. Les mentions visibles sur l’emballage restent des allégations d’étiquette et ne permettent pas de confirmer l’origine ou la composition."},
+ {name:"Super Lemon Dry",img:"superlemon.jpeg",desc:"Référence affichée « Super Lemon Dry », avec une identité visuelle citronnée. Le nom seul ne permet pas d’établir la composition ou la méthode de fabrication."},
+ {name:"Purple Kush",img:"purplekush.jpeg",desc:"Fleurs présentées sous le nom « Purple Kush ». Le visuel et le nom ne permettent pas d’authentifier une variété ni d’établir sa composition."}
+];
+let fav=new Set(JSON.parse(localStorage.getItem("fav")||"[]"));
+const grid=document.querySelector("#grid"), q=document.querySelector("#q");
+function render(){
+ const s=q.value.trim().toLowerCase();
+ const list=products.filter(x=>x.name.toLowerCase().includes(s));
+ document.querySelector("#count").textContent=list.length+" référence"+(list.length>1?"s":"");
+ grid.innerHTML=list.length?"":"<div class=empty>Aucun résultat.</div>";
+ list.forEach((p,i)=>{
+   const idx=products.indexOf(p), el=document.createElement("article"); el.className="card";
+   el.innerHTML=`<img class="pic" src="${p.img}" alt=""><button class="heart" data-f="${idx}">${fav.has(idx)?"♥":"♡"}</button><div class="info"><h3>${p.name}</h3><div class="status"><span class="dot"></span> Disponible au catalogue</div><div class="desc">Voir la fiche et les informations visibles.</div></div>`;
+   el.addEventListener("click",e=>{if(e.target.dataset.f!==undefined)return; openProduct(p)});
+   grid.appendChild(el);
+ });
+ document.querySelectorAll(".heart").forEach(b=>b.onclick=()=>{let i=+b.dataset.f;fav.has(i)?fav.delete(i):fav.add(i);localStorage.setItem("fav",JSON.stringify([...fav]));render()});
+}
+function openProduct(p){document.querySelector("#mimg").src=p.img;document.querySelector("#mtitle").textContent=p.name;document.querySelector("#mdesc").textContent=p.desc;document.querySelector("#modal").classList.add("open")}
+document.querySelector("#close").onclick=()=>document.querySelector("#modal").classList.remove("open");
+document.querySelector("#modal").onclick=e=>{if(e.target.id==="modal")e.currentTarget.classList.remove("open")};
+q.oninput=render; render();
+setTimeout(()=>document.querySelector("#splash").classList.add("hide"),1100);
+const tg=window.Telegram?.WebApp; if(tg){tg.ready();tg.expand();let u=tg.initDataUnsafe?.user;if(u?.first_name)document.querySelector("#avatar").textContent=u.first_name[0].toUpperCase()}
+const music=document.querySelector("#music"), audio=document.querySelector("#audio");
+music.onclick=async()=>{if(!audio.src){alert("Le lecteur est prêt. Ajoute un fichier nommé music.mp3 au dépôt pour activer la musique.");return} if(audio.paused){await audio.play();music.classList.add("playing")}else{audio.pause();music.classList.remove("playing")}};
+fetch("music.mp3",{method:"HEAD"}).then(r=>{if(r.ok)audio.src="music.mp3"}).catch(()=>{});
+</script>
+</body></html>
