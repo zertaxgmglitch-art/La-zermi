@@ -1,6 +1,26 @@
-LAZERMY V4
+LAZERMY V4 — remplacement des médias
 
-1. Place tes quatre fichiers audio dans /music et nomme-les track01.mp3 à track04.mp3.
-2. Envoie le contenu du dossier sur ton dépôt GitHub Pages.
-3. Les quatre cartes utilisent volontairement le même visuel, avec les quatre noms demandés.
-4. Le catalogue est informatif et n'inclut ni panier ni commande.
+IMAGES PRODUITS
+Dans assets/images/, remplace les 4 fichiers en gardant EXACTEMENT ces noms :
+- cali-mousse-monster.jpg
+- dry-lemon.jpg
+- filtre-x3-90u.jpg
+- purple-kush.jpg
+
+Les quatre fichiers inclus sont actuellement des copies du visuel fourni, afin que chaque fiche soit déjà reliée à son propre fichier. Tu peux donc remplacer chaque copie par l'image correspondante sans modifier app.js.
+
+FOND
+Le fond est : assets/background.jpeg
+Pour changer le fond, remplace ce fichier en gardant le même nom.
+
+MUSIQUES
+Dans le dossier music/, ajoute tes 4 MP3 en gardant EXACTEMENT ces noms :
+- track01.mp3
+- track02.mp3
+- track03.mp3
+- track04.mp3
+
+Le lecteur les reconnaît automatiquement. Après track04.mp3, il revient à track01.mp3.
+
+IMPORTANT
+Respecte minuscules, tirets et extensions (.jpg/.mp3), surtout sur GitHub Pages.

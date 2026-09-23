@@ -1,8 +1,8 @@
 const products=[
-{id:1,name:'CALI MOUSSE MONSTER',cat:'Nouveautés',tags:'papaya tropical summer',badge:'ÉDITION',desc:'Présentation visuelle de la collection. Consultation informative.',img:'assets/images/product.jpeg'},
-{id:2,name:'DRY LEMON',cat:'Collections',tags:'lemon agrumes',badge:'COLLECTION',desc:'Identité citronnée et présentation premium.',img:'assets/images/product.jpeg'},
-{id:3,name:'FILTRE X3 90u',cat:'Exclusivités',tags:'90u filtre',badge:'EXCLUSIF',desc:'Référence de collection présentée à titre informatif.',img:'assets/images/product.jpeg'},
-{id:4,name:'PURPLE KUSH',cat:'Collections',tags:'purple violet',badge:'COLLECTION',desc:'Univers violet de la sélection LAZERMY.',img:'assets/images/product.jpeg'}];
+{id:1,name:'CALI MOUSSE MONSTER',cat:'Nouveautés',tags:'papaya tropical summer',badge:'ÉDITION',desc:'Présentation visuelle de la collection. Consultation informative.',img:'assets/images/cali-mousse-monster.jpg'},
+{id:2,name:'DRY LEMON',cat:'Collections',tags:'lemon agrumes',badge:'COLLECTION',desc:'Identité citronnée et présentation premium.',img:'assets/images/dry-lemon.jpg'},
+{id:3,name:'FILTRE X3 90u',cat:'Exclusivités',tags:'90u filtre',badge:'EXCLUSIF',desc:'Référence de collection présentée à titre informatif.',img:'assets/images/filtre-x3-90u.jpg'},
+{id:4,name:'PURPLE KUSH',cat:'Collections',tags:'purple violet',badge:'COLLECTION',desc:'Univers violet de la sélection LAZERMY.',img:'assets/images/purple-kush.jpg'}];
 const tracks=[1,2,3,4].map(n=>({title:`LAZERMY ${String(n).padStart(2,'0')}`,artist:'LAZERMY RADIO',src:`music/track0${n}.mp3`}));
 let fav=JSON.parse(localStorage.getItem('lzFav')||'[]'),page='home',filter='Tous',q='',track=+(localStorage.getItem('lzTrack')||0);const app=document.querySelector('#app'),audio=document.querySelector('#audio');
 function saveFav(){localStorage.setItem('lzFav',JSON.stringify(fav))}function card(p){return `<article class="card"><img src="${p.img}" alt=""><div class="body"><button class="heart" onclick="toggleFav(${p.id})">${fav.includes(p.id)?'♥':'♡'}</button><div class="meta">${p.cat} · ${p.badge}</div><h3>${p.name}</h3><p>${p.desc}</p><div class="actions"><span class="status">● Disponible à la consultation</span><button class="view" onclick="detail(${p.id})">Voir</button></div></div></article>`}
